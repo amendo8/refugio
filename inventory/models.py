@@ -36,6 +36,7 @@ class ParteModulo(models.Model):
 
     nombre_part = models.CharField(max_length=100) # Ej: Lectora IM330 USB, Stacker CMD-V4
     numero_parte_fabricante = models.CharField(max_length=100)
+    serial_fabricacion = models.CharField(max_length=100, unique=True)
     
     # COMPATIBILIDAD: Una parte sirve para muchos modelos (Muchos a Muchos)
     equipos_compatibles = models.ManyToManyField(Equipo, related_name='partes_modulos')
