@@ -15,18 +15,13 @@ class SmallPartAdmin(admin.ModelAdmin):
 
 @admin.register(ReparacionModulo)
 class ReparacionModuloAdmin(admin.ModelAdmin):
-    list_display = ('parte_a_reparar', 'estado_proceso', 'fecha_ingreso',   'dias_taller')
+    list_display = ('parte_a_reparar', 'estado_proceso', 'fecha_ingreso',   'mostrar_dias_taller')
     inlines = [ConsumoSmallPartInline]
     search_fields = ('parte_a_reparar__nombre_part',)
     list_filter = ('estado_proceso',)
 
-    # Esta función resuelve el error E108
     def mostrar_dias_taller(self, obj):
         return obj.calcular_dias_habiles()
-    
-    # Esto le pone el título a la columna en el Admin
-    mostrar_dias_taller.short_description = "Días Hábiles"
-    
-    # Esto le pone el título a la columna en el Admin
+
     mostrar_dias_taller.short_description = "Días Hábiles"
 
